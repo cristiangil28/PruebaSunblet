@@ -30,8 +30,21 @@ public class Cliente implements Serializable{
 	private String ciudadResidencia;
 	
 	public Cliente() {
-		// TODO Auto-generated constructor stub
 	}
+	
+	
+	public Cliente(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+			String telefono, String direccion, String ciudadResidencia) {
+		super();
+		this.primerNombre = primerNombre;
+		this.segundoNombre = segundoNombre;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.ciudadResidencia = ciudadResidencia;
+	}
+
 
 	public String getPrimerNombre() {
 		return primerNombre;
@@ -103,5 +116,10 @@ public class Cliente implements Serializable{
 
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", primerNombre=" + primerNombre + ", segundoNombre=" + segundoNombre + "]";
 	}
 }

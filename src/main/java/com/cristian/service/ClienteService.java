@@ -14,7 +14,7 @@ public class ClienteService {
 	@Autowired
 	ClienteRepository clienteRepository;
 	
-	public Optional <Cliente> getCliente(String documento){
-		return clienteRepository.getCliente(documento);
+	public Optional <Cliente> getCliente(String tipoDocumento,String documento){
+		return clienteRepository.getCliente(tipoDocumento,documento);
 	}
 }
