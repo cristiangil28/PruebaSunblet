@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cristian.model.Cliente;
@@ -31,8 +32,8 @@ public class ClienteController {
 	 * @param documento
 	 * @return
 	 */
-	@RequestMapping(value = "cliente/{tipoDocumento}/{documento}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Cliente> getCliente(String tipoDocumento, String documento) {
+	@RequestMapping(value = "cliente", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Cliente> getCliente(@RequestParam String tipoDocumento, @RequestParam String documento) {
 		Optional<Cliente> cliente = null;
 		try {
 			cliente = clienteService.getCliente(tipoDocumento, documento);

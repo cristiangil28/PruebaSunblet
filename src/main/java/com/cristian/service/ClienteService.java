@@ -12,7 +12,7 @@ import com.cristian.repository.ClienteRepository;
 public class ClienteService {
 	
 	/**
-	 * Inyección de dependencia de la Clase ClienteRepository
+	 * Inyección de dependencia de ClienteRepository
 	 */
 	@Autowired
 	ClienteRepository clienteRepository;
