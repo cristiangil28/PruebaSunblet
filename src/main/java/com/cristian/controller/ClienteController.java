@@ -1,5 +1,6 @@
 package com.cristian.controller;
 
+import org.springframework.http.MediaType;
 import java.util.Optional;
 
 import org.json.JSONObject;
@@ -20,17 +21,22 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
-	@RequestMapping(value = "cliente/{tipoDocumento}/{documento}", method = RequestMethod.GET)
+	@RequestMapping(value = "cliente/{tipoDocumento}/{documento}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> getCliente(String tipoDocumento, String documento) {
-		JSONObject respuesta = new JSONObject();
-		Optional<Cliente> cliente = clienteService.getCliente(tipoDocumento, documento);
-		respuesta.put("cliente", cliente);
-		if((documento == null || documento.equals("")) || (tipoDocumento == null || tipoDocumento.equals(""))) {
-			respuesta.put("error", "El Tipo de Documento o  el Documento son obligatorios");
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		if (!cliente.isPresent()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		Optional<Cliente> cliente = null;
+		try {
+			JSONObject respuesta = new JSONObject();
+			cliente = clienteService.getCliente(tipoDocumento, documento);
+			respuesta.put("cliente", cliente);
+			if((documento == null || documento.equals("")) || (tipoDocumento == null || tipoDocumento.equals(""))) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			if (!cliente.isPresent()) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			
+		} catch (Exception e) {
+			return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.OK);
 	}

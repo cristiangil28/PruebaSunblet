@@ -8,6 +8,6 @@ import com.cristian.model.Cliente;
 
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 	
-	@Query(value= " select c.* from cliente c", nativeQuery = true)
+	@Query(value= " select c.* from cliente c where c.tipo_documento = ?1 and c.numero_documento =  ?2", nativeQuery = true)
 	Optional<Cliente> getCliente(String tipoDocumento, String documento);
 }
