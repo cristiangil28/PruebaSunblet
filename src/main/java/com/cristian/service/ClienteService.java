@@ -11,6 +11,9 @@ import com.cristian.repository.ClienteRepository;
 @Service
 public class ClienteService {
 	
+	/**
+	 * Inyección de dependencia de la Clase ClienteRepository
+	 */
 	@Autowired
 	ClienteRepository clienteRepository;
 	

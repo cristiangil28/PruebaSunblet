@@ -1,5 +1,7 @@
 package com.cristian.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import java.util.Optional;
 
@@ -21,23 +23,33 @@ public class ClienteController {
 	@Autowired
 	ClienteService clienteService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(ClienteService.class);
+	
+	/**
+	 * EndPonint que devuelve un Objeto Cliente filtrado por tipo documento y número de documento
+	 * @param tipoDocumento
+	 * @param documento
+	 * @return
+	 */
 	@RequestMapping(value = "cliente/{tipoDocumento}/{documento}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> getCliente(String tipoDocumento, String documento) {
 		Optional<Cliente> cliente = null;
 		try {
-			JSONObject respuesta = new JSONObject();
 			cliente = clienteService.getCliente(tipoDocumento, documento);
-			respuesta.put("cliente", cliente);
 			if((documento == null || documento.equals("")) || (tipoDocumento == null || tipoDocumento.equals(""))) {
+				logger.warn("El tipo de documento do numero documento no pueden ser vacíos");
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 			if (!cliente.isPresent()) {
+				logger.warn("El cliente no existe");
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 			
 		} catch (Exception e) {
+			logger.error("Error en el api");
 			return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		logger.info("Cliente si existe");
 		return new ResponseEntity<Cliente>(cliente.get(),HttpStatus.OK);
 	}
 }
