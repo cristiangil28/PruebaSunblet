@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Consultar Cliente</h4>
+        </div>
+    <div class="card-body">
+      <select required class="form-control" id="tipoDocumento" [(ngModel)]="tipoDocumento">
+        <option value="" disabled selected>Tipo Documento</option>
+        <option value="C">Cédula de Ciudadanía</option>
+        <option value="P">Pasaporte</option>
+      </select>
+      <input type="text" class="form-control" id="numeroDocumento" placeholder="Numero de Documento" [(ngModel)]="numeroDocumento">
+    </div>
+    <button class="btn" (click)="consultarCliente()">Consultar</button>
+   </div>
+  </div>
