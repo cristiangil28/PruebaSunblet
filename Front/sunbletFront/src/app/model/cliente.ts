@@ -1,13 +1,13 @@
-export class Cliente{
-    id:number;
-    primerNombre: String;
-    segundoNombre:String;
-    primerApellido: String;
-    segundoApellido: String;
-    telefono: String;
-    direccion: String;
-    ciudadResidencia: String;
+export class Cliente {
 
+    id : number;
+    primerApellido : String;
+    segundoApellido : String;
+    primerNombre : String;
+    segundoNombre : String;
+    telefono : String;
+    direccion : String;
+    ciudadResidencia : String;
     constructor(){
         this.id = 0;
         this.primerApellido = '';
@@ -18,4 +18,5 @@ export class Cliente{
         this.direccion = '';
         this.ciudadResidencia = '';
     }
+    
 }
