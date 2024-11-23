@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ClienteService } from '../../service/cliente/cliente.service';
 
 @Component({
   selector: 'app-consultar-cliente',
@@ -12,10 +12,16 @@ import { CommonModule } from '@angular/common';
 export class ConsultarClienteComponent {
   tipoDocumento : string = '';
   numeroDocumento : string = '';
-  constructor(){
+  constructor(private clienteService: ClienteService){
 
   }
   consultarCliente(){
-    alert('entro');
+    if(this.numeroDocumento != '' && this.tipoDocumento != ''){
+      this.clienteService.consultarCliente(this.tipoDocumento, this.numeroDocumento).subscribe(data =>{
+        if(data != null){
+          console.log(data);
+        }
+      });
+    }
   }
 }
