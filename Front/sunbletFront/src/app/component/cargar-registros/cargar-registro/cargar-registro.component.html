@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-body">
+            <a href="/">Regresar</a>
+            <br>
+            <br>
+            <input id="id" (input)="cargarRegistro($event)" (focus)="cargarRegistro($event)">
+            <table data-toggle="table" data-search="true" data-filter-control="true" data-show-export="true"
+                data-click-to-select="true" data-toolbar="#toolbar" class=" table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data">
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.apellido}}</td>
+                        <td>{{item.edad}}</td>
+                        <td>{{item.ciudad}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
